@@ -1,0 +1,30 @@
+<div class="upload-form">
+  <h1>Upload a New File</h1>
+  <%= form_with model: @document, local: true do |f| %>
+    <% if @document.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@document.errors.count, "error") %> prohibited this document from being saved:</h2>
+        <ul>
+        <% @document.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :title, class: 'form-label' %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description, class: 'form-label' %>
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :file, class: 'form-label' %>
+      <%= f.file_field :attachment, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit 'Upload', class: 'btn btn-success' %>
+    </div>
+  <% end %>
+</div>
