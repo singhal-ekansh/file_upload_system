@@ -10,6 +10,21 @@
   </head>
 
   <body>
+    <header style="background-color: #f8f9fa; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <h1>File Upload App</h1>
+      </div>
+      <div>
+        <% if user_signed_in? %>
+          <span>Welcome, <%= current_user.email %></span>
+          <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-link' %>
+        <% else %>
+          <%= link_to 'Sign In', new_user_session_path, class: 'btn btn-link' %>
+          <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-link' %>
+        <% end %>
+      </div>
+    </header>
+
     <%= yield %>
   </body>
 </html>
