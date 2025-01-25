@@ -1,24 +1,10 @@
-# README
+Steps to run on local enviornment
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+on terminal --
+  bundle install
+  rails db:create
+  rails db:migrate
 
-Things you may want to cover:
+  rails s
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+move to localhost:3000
