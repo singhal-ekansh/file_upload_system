@@ -20,6 +20,7 @@ gem "jbuilder"
 
 gem "concurrent-ruby", "1.3.4"
 gem 'devise'
+gem 'rubyzip', '~> 2.3'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

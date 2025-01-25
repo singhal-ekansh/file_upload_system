@@ -27,7 +27,7 @@
         <tr>
           <td><%= document.title %></td>
           <td><%= document.description %></td>
-          <td><%= document.attachment.blob.content_type %></td>
+          <td><%= document.attachment.blob&.content_type %></td>
           <td>
             <% if document.attachment.image? %>
               <%= image_tag document.attachment.url, style: 'max-width: 100px; max-height: 100px;' %>
@@ -36,7 +36,11 @@
             <% end %>
           </td>
           <td>
-            <%= link_to document_url(document.attachment.key), document_path(document.attachment.key), class: 'btn btn-secondary' %>
+            <% if !document.attachment.image? && document.attachment.blob.content_type != 'application/zip' %>
+               <%= "Compressing your file... Refresh to see the changes in some time" %>
+            <% else %>
+              <%= link_to document_url(document.attachment.key), document_path(document.attachment.key), class: 'btn btn-secondary' %>
+            <% end %>
           </td>
           <td>
             <%= button_to 'Delete', document_path(document), method: :delete, class: 'btn btn-danger' %>

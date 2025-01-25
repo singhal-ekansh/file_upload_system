@@ -11,6 +11,7 @@ class DocumentsController < ApplicationController
   def create
     @document = current_user.documents.new(document_params)
     if @document.save
+      CompressFileJob.perform_later(@document.id) # async compression
       redirect_to documents_path, notice: 'File uploaded successfully.'
     else
       render :new, alert: 'Failed to upload file.'
