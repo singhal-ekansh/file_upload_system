@@ -1,4 +1,5 @@
 class DocumentsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show]
   def index
     @documents = current_user.documents.includes(:attachment_blob)
   end
@@ -20,6 +21,10 @@ class DocumentsController < ApplicationController
     @document = current_user.documents.find(params[:id])
     @document.destroy
     redirect_to documents_path, notice: 'File deleted successfully.'
+  end
+
+  def show
+    @attachment = ActiveStorage::Attachment.joins(:blob).find_by(blob: { key: params[:id] })
   end
 
   private

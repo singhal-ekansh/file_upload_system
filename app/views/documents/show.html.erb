@@ -1,0 +1,13 @@
+<% if @attachment.present? %>
+  <div class="attachment-info">
+    <h3><%= @attachment.record.title %></h3>
+    <p><%= @attachment.record.description %></p>
+    <% if @attachment.image? %>
+      <%= image_tag @attachment.url, width: 500, height: 500 %>
+    <% else %>
+      <%= link_to 'Download Attachment', @attachment.url, download: true %>
+    <% end %>
+  </div>
+<% else %>
+  <p>INVALID URL</p>
+<% end %>

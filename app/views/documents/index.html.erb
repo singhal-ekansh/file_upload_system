@@ -17,7 +17,8 @@
        <th style="text-align: left;">Title</th>
         <th style="text-align: left;">Description</th>
         <th style="text-align: left;">Content Type</th>
-        <th style="text-align: left;">preview</th>
+        <th style="text-align: left;">Preview</th>
+        <th style="text-align: left;">Public URL</th>
         <th style="text-align: left;">Actions</th>
       </tr>
     </thead>
@@ -28,11 +29,14 @@
           <td><%= document.description %></td>
           <td><%= document.attachment.blob.content_type %></td>
           <td>
-            <% if document.attachment.blob.content_type.start_with?('image/') %>
+            <% if document.attachment.image? %>
               <%= image_tag document.attachment.url, style: 'max-width: 100px; max-height: 100px;' %>
             <% else %>
               <%= link_to 'Download', document.attachment.url, class: 'btn btn-primary' %>
             <% end %>
+          </td>
+          <td>
+            <%= link_to document_url(document.attachment.key), document_path(document.attachment.key), class: 'btn btn-secondary' %>
           </td>
           <td>
             <%= button_to 'Delete', document_path(document), method: :delete, class: 'btn btn-danger' %>
